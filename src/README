@@ -1,0 +1,32 @@
+//Todo
+- can we see if cherenkov light comes earlier than scintillation light?
+- cherenkov/ scintillation spectrum
+- hit --digit 
+//////////////////
+histogram 1D
+Edep--> should be scintillator only
+Ldep--> should be scintillator only
+dEdx--> should be scintillator only
+nhit --> No of hits, photon go to sensitive detector 
+nopticalphoton --> using stack information
+Edephit --> caculate energy deposit by the hit 
+
+Ntupe: Eldep --> for track deposition tree
+	Edep: energy deposit intotal
+	Ldep: passing length
+
+Ntuple: PrimTrack
+	xpos: x position
+	ypos: y position
+	zpos:z position
+	pz: momentum in z direction
+	theta: angle
+nphotonpass2end: counting number of photon pass to the end of sensitive detector
+nphotonfail2end: counting number of photon pass fail to the end of sensitive detector
+nphotonscintillation: --> number of generated scintillation
+nphotoncherenkov: --> number of photon cherenkov generated
+enscintillation: total energy of scintillation photons
+encherenkov: total energy of cherenkov detector
+
+
+

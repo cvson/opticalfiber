@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------
 # Setup the project
 cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
-project(scibar)
+project(silica)
 
 #----------------------------------------------------------------------------
 # Find Geant4 package, activating all available UI and Vis drivers by default
@@ -31,17 +31,17 @@ file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 #----------------------------------------------------------------------------
 # Add the executable, and link it to the Geant4 libraries
 #
-add_executable(scibar scibar.cc ${sources} ${headers})
-target_link_libraries(scibar ${Geant4_LIBRARIES} )
+add_executable(silica silica.cc ${sources} ${headers})
+target_link_libraries(silica ${Geant4_LIBRARIES} )
 
 #----------------------------------------------------------------------------
 # Copy all scripts to the build directory, i.e. the directory in which we
-# build scibar. This is so that we can run the executable directly because it
+# build silica. This is so that we can run the executable directly because it
 # relies on these scripts being in the current working directory.
 #
-set(scibar_SCRIPTS
-    scibar.out
-    scibar.in
+set(silica_SCRIPTS
+    silica.out
+    silica.in
     init.in
     gui.mac
     icons.mac
@@ -50,7 +50,7 @@ set(scibar_SCRIPTS
     vis.mac
    )
 
-foreach(_script ${scibar_SCRIPTS})
+foreach(_script ${silica_SCRIPTS})
   configure_file(
     ${PROJECT_SOURCE_DIR}/${_script}
     ${PROJECT_BINARY_DIR}/${_script}
@@ -61,5 +61,5 @@ endforeach()
 #----------------------------------------------------------------------------
 # Install the executable to 'bin' directory under CMAKE_INSTALL_PREFIX
 #
-install(TARGETS scibar DESTINATION bin)
+install(TARGETS silica DESTINATION bin)
 

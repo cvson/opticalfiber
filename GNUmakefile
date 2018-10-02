@@ -3,7 +3,7 @@
 # GNUmakefile for BIFFIBER example.
 # --------------------------------------------------------------
 
-name := scibar
+name := silica
 G4TARGET := $(name)
 G4EXLIB := true
 
