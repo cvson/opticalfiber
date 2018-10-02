@@ -1,0 +1,98 @@
+#
+# Create a scene handler/viewer for a specific graphics system
+#    The compound command "/vis/open <vis-driver-name>"
+#    is equivalent to the following set of commands:
+#
+#    /vis/sceneHandler/create
+#    /vis/viewer/create
+#
+# Create a scene handler and a viewer for the OGLIXm driver
+#
+/vis/open OGL 600x600-0+0
+#
+#/vis/viewer/set/style surface
+/vis/viewer/set/style wireframe
+#
+# Set direction from target to camera.
+#/vis/viewer/set/viewpointThetaPhi 0 0
+/vis/viewer/set/viewpointThetaPhi 30 30
+#/vis/viewer/zoom 100
+/vis/viewer/zoom 4
+#
+#    The compound command "/vis/drawVolume"
+#    is equivalent to the following set of commands:
+#
+#    /vis/scene/create
+#    /vis/scene/add/volume
+#    /vis/sceneHandler/attach
+# Create an empty scene and add the detector geometry to it
+/vis/drawVolume
+#
+/vis/scene/add/axes 0 0 0 0.5 cm
+#
+# Store particle trajectories for visualization
+# (if too many tracks cause core dump => storeTrajectory 0)
+/tracking/storeTrajectory 2
+#
+# Add trajectories to the current scene
+/vis/scene/add/trajectories smooth
+#
+# Requests viewer to accumulate hits, tracks, etc. at end of event.
+# detector remains or is redrawn.
+/vis/scene/endOfEventAction refresh
+#/vis/scene/endOfEventAction accumulate
+#
+/run/initialize
+#
+#/WLS/phys/verbose 1
+#
+/gps/particle mu-
+
+/gps/ene/type Mono
+/gps/ene/mono 10 GeV
+/gps/direction 0. 0. 1.
+/gps/pos/centre 5.0 0.0 0.0 cm
+/gps/pos/type Beam
+##incident beam is in xy
+/gps/pos/rot1 1 0 0
+/gps/pos/rot2 0 1 0
+# the beam spot is centered at the origin and is 
+# of 1d gaussian shape with a 3mm central plateau
+/gps/pos/shape Circle 
+/gps/pos/centre 5. 0. 0. mm
+/gps/pos/radius 0.01 mm
+/gps/pos/sigma_r .01 mm
+
+# the beam is travelling along the z-axis with 5 degrees dispersion
+/gps/ang/rot1 0 1 0
+#/gps/ang/rot2 1 0 0
+##rotate 30 degree
+#tangtheta = 1/sqrt(3)
+#/gps/ang/rot2 1 0 0.57735
+##rotate 45 degree
+#/gps/ang/rot2 1 0 1
+#/gps/ang/rot2 1 0 1.061
+##rotate 60 degree
+/gps/ang/rot2 1 0 1.732
+/gps/ang/type beam1d 
+#/gps/ang/sigma_r 5. deg
+/gps/ang/sigma_r 0.5 deg
+#
+#/gps/pos/type Plane
+#/gps/pos/shape Circle
+#/gps/pos/radius 0.01 mm
+#/gps/pos/centre 0.0 0.0 0.0 cm
+#/gps/pos/rot1 0 1 0
+#/gps/pos/rot2 0 0 1
+#/gps/ang/type iso
+
+#/gps/ang/mintheta 0.0 deg
+#/gps/ang/maxtheta  0.0 deg
+#/gps/ang/minphi 0.0 deg
+#/gps/ang/maxphi 0.0 deg
+#
+#/control/execute vis.mac
+#
+/run/beamOn 1
+#/run/beamOn 1000
+

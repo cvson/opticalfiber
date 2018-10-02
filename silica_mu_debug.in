@@ -1,0 +1,42 @@
+#
+# Macro file for the initialization phase of wls
+#
+#/run/verbose 1
+#/control/verbose 1
+#/event/verbose 1
+#/tracking/verbose 1
+#
+/run/initialize
+#
+#/WLS/phys/verbose 1
+#
+/gps/particle mu-
+/gps/ene/type Mono
+/gps/ene/mono 10 GeV
+#
+/gps/ene/type Mono
+/gps/ene/mono 10 GeV
+/gps/direction 0. 0. 1.
+/gps/pos/centre 0.0 0.0 0.0 cm
+/gps/pos/type Beam
+##incident beam is in xy
+/gps/pos/rot1 1 0 0
+/gps/pos/rot2 0 1 0
+# the beam spot is centered at the origin and is 
+# of 1d gaussian shape with a 3mm central plateau
+/gps/pos/shape Circle
+/gps/pos/centre 0. 0. 0. mm
+/gps/pos/radius 0.01 mm
+/gps/pos/sigma_r .01 mm
+
+# the beam is travelling along the x-axis with 5 degrees dispersion
+/gps/ang/rot1 0 1 0
+/gps/ang/rot2 1 0 0
+/gps/ang/type beam1d
+/gps/ang/sigma_r 5. deg
+#
+#/control/execute vis.mac
+#
+#/run/beamOn 1
+/run/beamOn 1000
+#
